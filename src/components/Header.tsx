@@ -108,10 +108,13 @@ export function Header() {
         >
           Байланысу
         </a>
-        <div className="mt-auto flex flex-col gap-1 pt-8 text-sm text-ink-soft">
-          <a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a>
-          <span>{siteConfig.address}</span>
-          <span>{siteConfig.workingHours}</span>
+        <div className="mt-auto flex flex-col gap-3 pt-8">
+          <p className="text-sm font-medium text-ink">{siteConfig.fullName}</p>
+          <div className="flex flex-col gap-1 text-sm text-ink-soft">
+            <a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a>
+            <span>{siteConfig.address}</span>
+            <span>{siteConfig.workingHours}</span>
+          </div>
         </div>
       </div>
     </header>

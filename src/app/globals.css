@@ -13,7 +13,7 @@
   --color-pink: #efb6c3;
   --color-lavender: #cdc3e8;
 
-  --font-heading: var(--font-unbounded), sans-serif;
+  --font-heading: var(--font-manrope), sans-serif;
   --font-body: var(--font-manrope), sans-serif;
 
   --radius-xl: 28px;

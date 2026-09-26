@@ -1,16 +1,19 @@
 import { infoFields } from "@/data/documents";
+import { isPlaceholder } from "@/data/site";
 import { Container } from "./ui/Container";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
 
 export function InfoBlock() {
+  const fields = infoFields.filter((field) => !isPlaceholder(field.value));
+
   return (
     <section className="relative bg-section py-20 sm:py-24">
       <Container>
         <SectionHeading eyebrow="Мекеме туралы" title="Балабақша туралы ақпарат" />
 
         <Reveal className="mt-10 grid divide-y divide-ink/8 overflow-hidden rounded-[28px] bg-surface px-6 shadow-[0_14px_36px_-26px_rgba(41,39,37,0.28)] sm:grid-cols-2 sm:divide-y-0 sm:px-8">
-          {infoFields.map((field, i) => (
+          {fields.map((field, i) => (
             <div
               key={field.label}
               className={`flex items-center gap-4 py-5 sm:border-ink/8 sm:py-6 ${
@@ -21,7 +24,7 @@ export function InfoBlock() {
                 <InfoIcon label={field.label} />
               </span>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-ink-soft">
+                <p className="text-xs font-semibold tracking-wide text-ink-soft">
                   {field.label}
                 </p>
                 <p className="mt-1 text-base text-ink">{field.value}</p>

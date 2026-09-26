@@ -1,4 +1,4 @@
-import { siteConfig } from "@/data/site";
+import { isPlaceholder, siteConfig } from "@/data/site";
 import { Container } from "./ui/Container";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
@@ -7,9 +7,8 @@ const contactRows = [
   { label: "Телефон", value: siteConfig.phone, href: `tel:${siteConfig.phoneHref}` },
   { label: "Мекенжай", value: siteConfig.address },
   { label: "Instagram", value: siteConfig.instagram, href: siteConfig.instagramHref },
-  { label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
   { label: "Жұмыс уақыты", value: siteConfig.workingHours },
-];
+].filter((row) => !isPlaceholder(row.value));
 
 export function Contact() {
   return (

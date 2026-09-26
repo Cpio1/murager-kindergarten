@@ -15,9 +15,7 @@ export function Groups() {
   return (
     <section id="groups" className="relative py-20 sm:py-24">
       <Container>
-        <SectionHeading eyebrow="Топтар" title="Біздің топтар">
-          Жас ерекшелігіне сай бағдарламалар мен жайлы топ бөлмелері.
-        </SectionHeading>
+        <SectionHeading eyebrow="Топтар" title="Біздің топтар" />
 
         <div className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:snap-none sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
           {groups.map((group, i) => (
@@ -43,7 +41,6 @@ export function Groups() {
                 </div>
                 <div className="p-5">
                   <h3 className="font-heading text-lg text-ink">{group.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{group.description}</p>
                 </div>
               </div>
             </Reveal>

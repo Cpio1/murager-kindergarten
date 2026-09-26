@@ -5,15 +5,19 @@ export const siteConfig = {
   name: "Мұрагер",
   fullName: '«Мұрагер» бөбекжай балабақшасы',
   tagline: "бөбекжай балабақшасы",
-  phone: "+7 (700) 000 00 00",
-  phoneHref: "+77000000000",
+  phone: "[телефон кейінірек қосылады]",
+  phoneHref: "",
   address: "[мекенжай кейінірек қосылады]",
   workingHours: "[жұмыс уақыты кейінірек қосылады]",
-  email: "[электрондық пошта кейінірек қосылады]",
   instagram: "[instagram сілтемесі кейінірек қосылады]",
   instagramHref: "#",
   mapEmbedUrl: "",
 };
+
+// Мәтін «кейінірек қосылады» деп белгіленген болса, оны сайтта көрсетпейміз.
+export function isPlaceholder(value: string) {
+  return value.trim().startsWith("[");
+}
 
 export const navigation = [
   { label: "Басты бет", href: "#hero" },

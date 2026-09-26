@@ -17,12 +17,11 @@ export function Documents() {
             <DocumentIcon />
           </span>
           <h3 className="mt-6 font-heading text-xl text-ink">{doc.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-ink-soft">{doc.description}</p>
           <Link
             href={doc.href}
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-orange"
+            className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-orange"
           >
-            Құжаттарды қарау
+            Қарау
             <span aria-hidden="true">→</span>
           </Link>
         </Reveal>
