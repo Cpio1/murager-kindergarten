@@ -111,7 +111,11 @@ export function Header() {
         <div className="mt-auto flex flex-col gap-3 pt-8">
           <p className="text-sm font-medium text-ink">{siteConfig.fullName}</p>
           <div className="flex flex-col gap-1 text-sm text-ink-soft">
-            <a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a>
+            {siteConfig.phones.map((phone) => (
+              <a key={phone.href} href={phone.href}>
+                {phone.label}
+              </a>
+            ))}
             <span>{siteConfig.address}</span>
             <span>{siteConfig.workingHours}</span>
           </div>

@@ -19,20 +19,6 @@ export function Nutrition() {
               ))}
             </div>
 
-            <Reveal className="mt-8 flex flex-wrap gap-3">
-              {nutritionContent.schedule.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center gap-3 rounded-full bg-surface px-5 py-3 shadow-[0_8px_20px_-16px_rgba(41,39,37,0.3)]"
-                >
-                  <span className="h-2 w-2 rounded-full bg-orange" />
-                  <div className="leading-tight">
-                    <p className="text-sm font-semibold text-ink">{item.label}</p>
-                    <p className="text-xs text-ink-soft">{item.time}</p>
-                  </div>
-                </div>
-              ))}
-            </Reveal>
           </div>
 
           <Reveal delay={100} className="relative grid grid-cols-2 gap-4">
@@ -40,19 +26,19 @@ export function Nutrition() {
               src={nutritionContent.images.primary}
               alt="Балалар мәзірі"
               accent="orange"
-              className="col-span-2 aspect-[16/10] w-full rounded-[26px] shadow-[0_18px_40px_-22px_rgba(41,39,37,0.3)]"
+              className="col-span-2 shape-leaf aspect-[16/10] w-full shadow-[0_18px_40px_-22px_rgba(41,39,37,0.3)]"
             />
             <PhotoFrame
               src={nutritionContent.images.secondary}
               alt="Дәмхана тағамдары"
               accent="peach"
-              className="aspect-square w-full rounded-[26px] shadow-[0_18px_40px_-22px_rgba(41,39,37,0.3)]"
+              className="shape-blob aspect-square w-full shadow-[0_18px_40px_-22px_rgba(41,39,37,0.3)]"
             />
-            <div className="flex items-center justify-center rounded-[26px] bg-yellow-light p-6 text-center">
+            <div className="flex items-center justify-center shape-wave bg-yellow-light p-6 text-center">
               <p className="font-heading text-base leading-snug text-ink/80">
-                Күн сайын
+                Күніне
                 <br />
-                жаңа мәзір
+                5 рет
               </p>
             </div>
           </Reveal>

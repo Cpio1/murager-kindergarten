@@ -73,6 +73,65 @@ body {
   transform: translateY(0);
 }
 
+/* Soft organic shapes — 4 repeating variants used across the site */
+.shape-leaf,
+.shape-leaf-alt {
+  --shape-a: 22px;
+  --shape-b: 40px;
+}
+
+.shape-leaf {
+  border-radius: var(--shape-a) var(--shape-b) var(--shape-a) var(--shape-b);
+}
+
+.shape-leaf-alt {
+  border-radius: var(--shape-b) var(--shape-a) var(--shape-b) var(--shape-a);
+}
+
+.shape-wave {
+  border-radius: 18px 48px 26px 48px;
+}
+
+.shape-blob {
+  border-radius: 58% 42% 52% 48% / 46% 54% 46% 54%;
+}
+
+.shape-organic {
+  border-radius: 64px 140px 72px 150px / 80px 120px 96px 140px;
+}
+
+.shape-lg {
+  --shape-a: 32px;
+  --shape-b: 64px;
+}
+
+.shape-hero-photo {
+  border-radius: 0 0 80px 36px / 0 0 48px 28px;
+}
+
+@media (min-width: 640px) {
+  .shape-leaf,
+  .shape-leaf-alt {
+    --shape-a: 30px;
+    --shape-b: 56px;
+  }
+
+  .shape-wave {
+    border-radius: 20px 60px 30px 60px;
+  }
+
+  .shape-lg {
+    --shape-a: 40px;
+    --shape-b: 88px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shape-hero-photo {
+    border-radius: 150px 0 0 110px / 200px 0 0 140px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

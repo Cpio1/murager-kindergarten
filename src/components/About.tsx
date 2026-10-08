@@ -21,7 +21,7 @@ export function About() {
               src={aboutContent.image}
               alt="Балабақша ұжымы мен балалар"
               accent="lavender"
-              className="aspect-[4/5] w-full rounded-[28px] shadow-[0_20px_46px_-24px_rgba(41,39,37,0.3)] sm:aspect-[16/12] lg:aspect-[4/5]"
+              className="shape-organic aspect-[4/5] w-full shadow-[0_20px_46px_-24px_rgba(41,39,37,0.3)] sm:aspect-[16/12] lg:aspect-[4/5]"
             />
           </Reveal>
 
@@ -41,7 +41,7 @@ export function About() {
                 <Reveal
                   key={card.title}
                   delay={i * 100}
-                  className="rounded-[22px] bg-surface p-6 shadow-[0_10px_28px_-20px_rgba(41,39,37,0.25)]"
+                  className={`${i % 2 ? "shape-leaf-alt" : "shape-leaf"} bg-surface p-6 shadow-[0_10px_28px_-20px_rgba(41,39,37,0.25)]`}
                 >
                   <span className={`mb-4 inline-block h-2.5 w-2.5 rounded-full ${ACCENT_DOT[card.accent]}`} />
                   <h3 className="font-heading text-lg text-ink">{card.title}</h3>

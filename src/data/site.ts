@@ -5,24 +5,17 @@ export const siteConfig = {
   name: "Мұрагер",
   fullName: '«Мұрагер» бөбекжай балабақшасы',
   tagline: "бөбекжай балабақшасы",
-  phone: "[телефон кейінірек қосылады]",
-  phoneHref: "",
-  address: "[мекенжай кейінірек қосылады]",
-  workingHours: "[жұмыс уақыты кейінірек қосылады]",
-  instagram: "[instagram сілтемесі кейінірек қосылады]",
-  instagramHref: "#",
-  mapEmbedUrl: "",
+  phones: [
+    { label: "+7 771 178 53 333", href: "tel:+771117853333" },
+    { label: "+7 778 418 38 42", href: "tel:+77784183842" },
+  ],
+  address: "Нұр Алатау, Мамыр көшесі, 14",
+  workingHours: "07:30–18:30",
 };
-
-// Мәтін «кейінірек қосылады» деп белгіленген болса, оны сайтта көрсетпейміз.
-export function isPlaceholder(value: string) {
-  return value.trim().startsWith("[");
-}
 
 export const navigation = [
   { label: "Басты бет", href: "#hero" },
   { label: "Біз туралы", href: "#about" },
-  { label: "Топтар", href: "#groups" },
   { label: "Тамақтану", href: "#nutrition" },
   { label: "Фотосуреттер", href: "#gallery" },
   { label: "Құжаттар", href: "#documents" },

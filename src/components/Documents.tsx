@@ -12,7 +12,7 @@ export function Documents() {
       <Container>
         <SectionHeading eyebrow="Ресми ақпарат" title="Құжаттар" />
 
-        <Reveal className="mt-10 max-w-xl rounded-[28px] bg-surface p-8 shadow-[0_16px_40px_-26px_rgba(41,39,37,0.3)] sm:p-10">
+        <Reveal className="mt-10 shape-leaf max-w-xl bg-surface p-8 shadow-[0_16px_40px_-26px_rgba(41,39,37,0.3)] sm:p-10">
           <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-light text-ink">
             <DocumentIcon />
           </span>

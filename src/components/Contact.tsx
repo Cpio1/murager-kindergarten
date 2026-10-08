@@ -1,14 +1,9 @@
-import { isPlaceholder, siteConfig } from "@/data/site";
+import { siteConfig } from "@/data/site";
 import { Container } from "./ui/Container";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
 
-const contactRows = [
-  { label: "Телефон", value: siteConfig.phone, href: `tel:${siteConfig.phoneHref}` },
-  { label: "Мекенжай", value: siteConfig.address },
-  { label: "Instagram", value: siteConfig.instagram, href: siteConfig.instagramHref },
-  { label: "Жұмыс уақыты", value: siteConfig.workingHours },
-].filter((row) => !isPlaceholder(row.value));
+const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address)}`;
 
 export function Contact() {
   return (
@@ -16,48 +11,52 @@ export function Contact() {
       <Container>
         <SectionHeading eyebrow="Байланыс" title="Бізбен байланысыңыз" />
 
-        <Reveal className="mt-10 grid overflow-hidden rounded-[32px] bg-surface shadow-[0_20px_48px_-28px_rgba(41,39,37,0.3)] lg:grid-cols-2">
+        <Reveal className="mt-10 shape-leaf-alt shape-lg grid overflow-hidden bg-surface shadow-[0_20px_48px_-28px_rgba(41,39,37,0.3)] lg:grid-cols-2">
           <div className="flex flex-col justify-center gap-1 p-8 sm:p-10 lg:p-12">
-            {contactRows.map((row) =>
-              row.href ? (
-                <a
-                  key={row.label}
-                  href={row.href}
-                  className="flex items-center justify-between gap-4 border-b border-ink/8 py-4 transition-colors last:border-b-0 hover:text-orange"
-                >
-                  <span className="text-sm font-medium text-ink-soft">{row.label}</span>
-                  <span className="text-right text-base font-semibold text-ink">{row.value}</span>
+            <ContactRow label="Мекенжай">{siteConfig.address}</ContactRow>
+            <ContactRow label="Телефон">
+              {siteConfig.phones.map((phone) => (
+                <a key={phone.href} href={phone.href} className="block transition-colors hover:text-orange">
+                  {phone.label}
                 </a>
-              ) : (
-                <div
-                  key={row.label}
-                  className="flex items-center justify-between gap-4 border-b border-ink/8 py-4 last:border-b-0"
-                >
-                  <span className="text-sm font-medium text-ink-soft">{row.label}</span>
-                  <span className="text-right text-base font-semibold text-ink">{row.value}</span>
-                </div>
-              )
-            )}
+              ))}
+            </ContactRow>
+            <ContactRow label="Жұмыс уақыты">{siteConfig.workingHours}</ContactRow>
 
             <a
-              href={siteConfig.instagramHref}
+              href={siteConfig.phones[0].href}
               className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-ink transition-all hover:-translate-y-0.5 hover:bg-yellow/90"
             >
-              Instagram-ға өту
+              Қоңырау шалу
             </a>
           </div>
 
-          <div className="relative flex min-h-[280px] items-center justify-center bg-yellow-light/60 lg:min-h-0">
+          <a
+            href={mapHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative flex min-h-[240px] items-center justify-center bg-yellow-light/60 lg:min-h-0"
+          >
             <div className="flex flex-col items-center gap-3 text-center">
               <MapPinIcon />
-              <p className="max-w-[220px] text-sm text-ink-soft">
-                Карта мекенжай қосылғаннан кейін осында көрсетіледі
-              </p>
+              <p className="max-w-[240px] text-base font-semibold text-ink">{siteConfig.address}</p>
+              <span className="text-sm text-ink-soft transition-colors group-hover:text-orange">
+                Картадан қарау →
+              </span>
             </div>
-          </div>
+          </a>
         </Reveal>
       </Container>
     </section>
+  );
+}
+
+function ContactRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-start justify-between gap-4 border-b border-ink/8 py-4 last-of-type:border-b-0">
+      <span className="text-sm font-medium text-ink-soft">{label}</span>
+      <div className="text-right text-base font-semibold text-ink">{children}</div>
+    </div>
   );
 }
 

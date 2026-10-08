@@ -14,6 +14,8 @@ const SPAN_CLASS: Record<string, string> = {
   small: "aspect-square",
 };
 
+const GALLERY_SHAPES = ["shape-organic", "shape-blob", "shape-wave", "shape-leaf", "shape-leaf-alt", "shape-wave", "shape-blob", "shape-leaf"];
+
 export function Gallery() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -44,7 +46,7 @@ export function Gallery() {
               <button
                 type="button"
                 onClick={() => setActiveIndex(i)}
-                className="group block h-full w-full overflow-hidden rounded-[22px] focus:outline-none focus-visible:ring-2 focus-visible:ring-orange sm:rounded-[26px]"
+                className={`group block h-full w-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-orange ${GALLERY_SHAPES[i % GALLERY_SHAPES.length]}`}
               >
                 <PhotoFrame
                   src={image.src}
@@ -111,7 +113,7 @@ function Lightbox({
       </button>
 
       <div
-        className="relative aspect-[4/3] w-full max-w-3xl overflow-hidden rounded-[28px]"
+        className="relative aspect-[4/3] w-full max-w-3xl overflow-hidden shape-leaf shape-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <PhotoFrame src={image.src} alt={image.alt} accent="peach" className="h-full w-full" sizes="90vw" />
