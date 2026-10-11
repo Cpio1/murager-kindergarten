@@ -1,5 +1,5 @@
 export const aboutContent = {
-  image: "/images/about.jpg",
+  image: "/images/image3.jpeg",
   title: "Біз туралы",
   paragraphs: [
     '«Мұрагер» бөбекжай балабақшасы — балалардың дамуы мен тәрбиесіне арналған жайлы орта.',

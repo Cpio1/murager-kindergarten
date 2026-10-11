@@ -19,6 +19,7 @@ export function PhotoFrame({
   sizes = "(min-width: 1024px) 50vw, 100vw",
   priority = false,
   fill = true,
+  objectPosition,
 }: {
   src: string;
   alt: string;
@@ -27,6 +28,7 @@ export function PhotoFrame({
   sizes?: string;
   priority?: boolean;
   fill?: boolean;
+  objectPosition?: string;
 }) {
   const [failed, setFailed] = useState(false);
   const fileName = src.split("/").pop();
@@ -53,6 +55,7 @@ export function PhotoFrame({
         sizes={sizes}
         priority={priority}
         className="object-cover"
+        style={objectPosition ? { objectPosition } : undefined}
         onError={() => setFailed(true)}
       />
     </div>

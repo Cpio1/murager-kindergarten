@@ -30,8 +30,8 @@ export function Hero() {
 
             <div className="relative order-1 min-h-[260px] sm:min-h-[340px] lg:order-2 lg:min-h-0">
               <PhotoFrame
-                src="/images/hero.jpg"
-                alt="Балабақшадағы балалар"
+                src="/images/image18.jpeg"
+                alt="Мұрагер балабақшасы"
                 accent="peach"
                 priority
                 sizes="(min-width: 1024px) 780px, 100vw"

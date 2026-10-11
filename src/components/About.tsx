@@ -19,7 +19,9 @@ export function About() {
             <Sparkle className="-right-3 -top-3 h-6 w-6 opacity-60" />
             <PhotoFrame
               src={aboutContent.image}
-              alt="Балабақша ұжымы мен балалар"
+              alt="Мұрагер балабақшасындағы балалар"
+              objectPosition="center 70%"
+              sizes="(min-width: 1024px) 50vw, 100vw"
               accent="lavender"
               className="shape-organic aspect-[4/5] w-full shadow-[0_20px_46px_-24px_rgba(41,39,37,0.3)] sm:aspect-[16/12] lg:aspect-[4/5]"
             />

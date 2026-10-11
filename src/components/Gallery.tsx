@@ -8,10 +8,10 @@ import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
 
 const SPAN_CLASS: Record<string, string> = {
-  large: "col-span-2 row-span-2 aspect-square sm:aspect-auto",
-  wide: "col-span-2 aspect-[16/9]",
-  tall: "row-span-2 aspect-[3/4]",
-  small: "aspect-square",
+  large: "col-span-2 row-span-2",
+  wide: "col-span-2",
+  tall: "row-span-2",
+  small: "",
 };
 
 const GALLERY_SHAPES = ["shape-organic", "shape-blob", "shape-wave", "shape-leaf", "shape-leaf-alt", "shape-wave", "shape-blob", "shape-leaf"];
@@ -40,7 +40,7 @@ export function Gallery() {
       <Container>
         <SectionHeading eyebrow="Галерея" title="Балабақша өмірінен" />
 
-        <div className="mt-12 grid auto-rows-[minmax(120px,auto)] grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
+        <div className="mt-12 grid grid-flow-dense auto-rows-[calc(50vw-28px)] grid-cols-2 sm:auto-rows-[200px] lg:auto-rows-[260px] gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
           {galleryImages.map((image, i) => (
             <Reveal key={image.src} delay={(i % 4) * 70} className={SPAN_CLASS[image.span]}>
               <button
@@ -52,7 +52,7 @@ export function Gallery() {
                   src={image.src}
                   alt={image.alt}
                   accent={(["yellow", "peach", "orange", "lavender"] as const)[i % 4]}
-                  sizes="(min-width: 1024px) 25vw, 50vw"
+                  sizes={image.span === "large" || image.span === "wide" ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"}
                   className="h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.06]"
                 />
               </button>
