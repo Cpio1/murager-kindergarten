@@ -3,21 +3,24 @@
 
 export const siteConfig = {
   name: "Мұрагер",
-  fullName: '«Мұрагер» бөбекжай балабақшасы',
+  fullName: "«Мұрагер» бөбекжай балабақшасы",
   tagline: "бөбекжай балабақшасы",
   phones: [
-    { label: "+7 771 178 53 333", href: "tel:+771117853333" },
+    { label: "+7 771 178 53 33", href: "tel:+77711785333" },
     { label: "+7 778 418 38 42", href: "tel:+77784183842" },
   ],
   address: "Нұр Алатау, Мамыр көшесі, 14",
   workingHours: "07:30–18:30",
+  instagram: "https://www.instagram.com/p/DP0hdHHjO1F/?stkn=MXZldjFodGVlZWVwMg==",
+  // Мамыр көшесі, 14 ғимаратының координаттары (Нұр Алатау шағын ауданы)
+  map: { lat: 43.194269, lng: 76.902232 },
 };
 
 export const navigation = [
   { label: "Басты бет", href: "#hero" },
   { label: "Біз туралы", href: "#about" },
-  { label: "Тамақтану", href: "#nutrition" },
-  { label: "Фотосуреттер", href: "#gallery" },
+  { label: "Ақпарат", href: "#info" },
+  { label: "Галерея", href: "#gallery" },
   { label: "Құжаттар", href: "#documents" },
   { label: "Байланыс", href: "#contact" },
 ];

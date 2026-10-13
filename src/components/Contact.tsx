@@ -1,20 +1,27 @@
+import { ReactNode } from "react";
 import { siteConfig } from "@/data/site";
 import { Container } from "./ui/Container";
+import { Cloud, Heart, Sun } from "./ui/Decor";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
 
-const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address)}`;
+const { lat, lng } = siteConfig.map;
+const mapEmbedSrc = `https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s${lat},${lng}!6i17!3m1!1skk!5m1!1skk`;
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-20 sm:py-24">
-      <Container>
-        <SectionHeading eyebrow="Байланыс" title="Бізбен байланысыңыз" />
+    <section id="contact" className="relative py-10 sm:py-14 lg:py-16">
+      <Sun className="right-5 top-8 h-9 w-9 text-yellow opacity-35 sm:right-12" rotate={8} />
+      <Heart className="left-3 top-[40%] h-5 w-5 text-pink opacity-30" rotate={-10} mobile={false} />
+      <Cloud className="bottom-3 left-[30%] h-6 w-10 text-lavender opacity-30" mobile={false} />
 
-        <Reveal className="mt-10 shape-leaf-alt shape-lg grid overflow-hidden bg-surface shadow-[0_20px_48px_-28px_rgba(41,39,37,0.3)] lg:grid-cols-2">
-          <div className="flex flex-col justify-center gap-1 p-8 sm:p-10 lg:p-12">
+      <Container>
+        <SectionHeading title="Бізбен байланысыңыз" />
+
+        <div className="mt-7 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:gap-6">
+          <Reveal className="shape-leaf-alt flex flex-col justify-center bg-surface px-6 py-3 shadow-[0_20px_48px_-28px_rgba(41,39,37,0.3)] sm:px-8 sm:py-4">
             <ContactRow label="Мекенжай">{siteConfig.address}</ContactRow>
-            <ContactRow label="Телефон">
+            <ContactRow label="Телефондар">
               {siteConfig.phones.map((phone) => (
                 <a key={phone.href} href={phone.href} className="block transition-colors hover:text-orange">
                   {phone.label}
@@ -22,54 +29,52 @@ export function Contact() {
               ))}
             </ContactRow>
             <ContactRow label="Жұмыс уақыты">{siteConfig.workingHours}</ContactRow>
+            <ContactRow label="Instagram">
+              <a
+                href={siteConfig.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors hover:text-orange"
+              >
+                <InstagramIcon />
+                Instagram
+              </a>
+            </ContactRow>
+          </Reveal>
 
-            <a
-              href={siteConfig.phones[0].href}
-              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-yellow px-6 py-3 text-sm font-semibold text-ink transition-all hover:-translate-y-0.5 hover:bg-yellow/90"
-            >
-              Қоңырау шалу
-            </a>
-          </div>
-
-          <a
-            href={mapHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative flex min-h-[240px] items-center justify-center bg-yellow-light/60 lg:min-h-0"
+          <Reveal
+            delay={100}
+            className="shape-organic relative h-[320px] w-full overflow-hidden bg-yellow-light/60 shadow-[0_20px_48px_-28px_rgba(41,39,37,0.3)] sm:h-[380px] lg:h-auto lg:min-h-[400px]"
           >
-            <div className="flex flex-col items-center gap-3 text-center">
-              <MapPinIcon />
-              <p className="max-w-[240px] text-base font-semibold text-ink">{siteConfig.address}</p>
-              <span className="text-sm text-ink-soft transition-colors group-hover:text-orange">
-                Картадан қарау →
-              </span>
-            </div>
-          </a>
-        </Reveal>
+            <iframe
+              src={mapEmbedSrc}
+              title={`Карта: ${siteConfig.address}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 h-full w-full border-0"
+            />
+          </Reveal>
+        </div>
       </Container>
     </section>
   );
 }
 
-function ContactRow({ label, children }: { label: string; children: React.ReactNode }) {
+function ContactRow({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="flex items-start justify-between gap-4 border-b border-ink/8 py-4 last-of-type:border-b-0">
+    <div className="flex flex-col gap-1 border-b border-ink/8 py-4 last:border-b-0 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
       <span className="text-sm font-medium text-ink-soft">{label}</span>
-      <div className="text-right text-base font-semibold text-ink">{children}</div>
+      <div className="text-base font-semibold text-ink sm:text-right">{children}</div>
     </div>
   );
 }
 
-function MapPinIcon() {
+export function InstagramIcon({ className = "" }: { className?: string }) {
   return (
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="text-orange/70" aria-hidden="true">
-      <path
-        d="M12 21.5C12 21.5 19 15.4 19 10C19 6.13 15.87 3 12 3C8.13 3 5 6.13 5 10C5 15.4 12 21.5 12 21.5Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-      <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.6" />
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5.5" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" />
     </svg>
   );
 }

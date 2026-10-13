@@ -31,7 +31,6 @@ export function PhotoFrame({
   objectPosition?: string;
 }) {
   const [failed, setFailed] = useState(false);
-  const fileName = src.split("/").pop();
 
   if (failed) {
     return (
@@ -39,9 +38,6 @@ export function PhotoFrame({
         className={`relative flex items-center justify-center overflow-hidden bg-gradient-to-br ${GRADIENTS[accent]} ${className}`}
       >
         <ImagePlaceholderIcon />
-        <span className="absolute bottom-4 right-4 rounded-full bg-white/70 px-3 py-1 text-[11px] font-medium text-ink/50 backdrop-blur-sm">
-          {fileName}
-        </span>
       </div>
     );
   }

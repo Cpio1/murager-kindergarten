@@ -5,13 +5,12 @@ import "./globals.css";
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin", "cyrillic", "cyrillic-ext"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
   title: '«Мұрагер» бөбекжай балабақшасы',
-  description:
-    "Балалардың дамуы, тәрбиесі мен қауіпсіздігіне арналған жайлы орта — «Мұрагер» бөбекжай балабақшасы.",
+  description: "«Мұрагер» бөбекжай балабақшасы — балалардың тәрбиесі мен дамуына арналған жайлы орта.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

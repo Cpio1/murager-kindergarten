@@ -19,7 +19,7 @@ export function SectionHeading({
           {eyebrow}
         </span>
       )}
-      <h2 className="font-heading text-[2rem] leading-[1.15] text-ink sm:text-[2.5rem] lg:text-[2.75rem]">
+      <h2 className="font-heading text-[1.875rem] font-bold leading-[1.15] text-ink sm:text-[2.25rem] lg:text-[2.625rem]">
         {title}
       </h2>
       {children && (

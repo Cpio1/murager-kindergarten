@@ -29,17 +29,15 @@ export function Header() {
           scrolled ? "bg-cream/95 shadow-[0_6px_24px_-16px_rgba(41,39,37,0.35)]" : "bg-cream/70"
         } backdrop-blur-md`}
       >
-        <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-6 py-3.5 lg:px-10">
+        <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
           <Link href="#hero" className="flex flex-col leading-none">
-            <span className="font-heading text-[1.75rem] font-semibold tracking-tight text-ink sm:text-[2rem]">
-              {siteConfig.name}
+            <span className="font-heading text-[1.6rem] font-bold tracking-tight text-ink sm:text-[1.85rem]">
+              «{siteConfig.name}»
             </span>
-            <span className="mt-1 text-[11px] font-medium tracking-wide text-ink-soft">
-              {siteConfig.tagline}
-            </span>
+            <span className="mt-0.5 text-xs font-medium text-ink-soft">{siteConfig.tagline}</span>
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {navigation.map((item) => (
               <a
                 key={item.href}
@@ -85,7 +83,7 @@ export function Header() {
       </div>
 
       <div
-        className={`fixed inset-0 top-0 z-40 flex flex-col bg-cream px-6 pb-10 pt-28 transition-transform duration-300 ease-out lg:hidden ${
+        className={`fixed inset-0 top-0 z-40 flex flex-col bg-cream px-6 pb-10 pt-24 transition-transform duration-300 ease-out lg:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -108,17 +106,13 @@ export function Header() {
         >
           Байланысу
         </a>
-        <div className="mt-auto flex flex-col gap-3 pt-8">
-          <p className="text-sm font-medium text-ink">{siteConfig.fullName}</p>
-          <div className="flex flex-col gap-1 text-sm text-ink-soft">
-            {siteConfig.phones.map((phone) => (
-              <a key={phone.href} href={phone.href}>
-                {phone.label}
-              </a>
-            ))}
-            <span>{siteConfig.address}</span>
-            <span>{siteConfig.workingHours}</span>
-          </div>
+        <div className="mt-auto flex flex-col gap-1 pt-8 text-sm text-ink-soft">
+          {siteConfig.phones.map((phone) => (
+            <a key={phone.href} href={phone.href} className="font-medium text-ink">
+              {phone.label}
+            </a>
+          ))}
+          <span>{siteConfig.address}</span>
         </div>
       </div>
     </header>
