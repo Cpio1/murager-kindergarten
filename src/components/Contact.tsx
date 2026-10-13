@@ -10,7 +10,7 @@ const mapEmbedSrc = `https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-10 sm:py-14 lg:py-16">
+    <section id="contact" className="relative py-10 sm:py-12 lg:py-13">
       <Sun className="right-5 top-8 h-9 w-9 text-yellow opacity-35 sm:right-12" rotate={8} />
       <Heart className="left-3 top-[40%] h-5 w-5 text-pink opacity-30" rotate={-10} mobile={false} />
       <Cloud className="bottom-3 left-[30%] h-6 w-10 text-lavender opacity-30" mobile={false} />
@@ -18,8 +18,8 @@ export function Contact() {
       <Container>
         <SectionHeading title="Бізбен байланысыңыз" />
 
-        <div className="mt-7 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:gap-6">
-          <Reveal className="shape-leaf-alt flex flex-col justify-center bg-surface px-6 py-3 shadow-[0_20px_48px_-28px_rgba(41,39,37,0.3)] sm:px-8 sm:py-4">
+        <div className="mt-7 grid gap-5 sm:mt-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-6">
+          <Reveal className="shape-leaf-alt flex flex-col justify-center bg-surface px-6 py-3 shadow-[0_20px_48px_-28px_rgba(41,39,37,0.3)] sm:px-7 sm:py-3">
             <ContactRow label="Мекенжай">{siteConfig.address}</ContactRow>
             <ContactRow label="Телефондар">
               {siteConfig.phones.map((phone) => (
@@ -44,7 +44,7 @@ export function Contact() {
 
           <Reveal
             delay={100}
-            className="shape-organic relative h-[320px] w-full overflow-hidden bg-yellow-light/60 shadow-[0_20px_48px_-28px_rgba(41,39,37,0.3)] sm:h-[380px] lg:h-auto lg:min-h-[400px]"
+            className="shape-organic relative h-[320px] w-full overflow-hidden bg-yellow-light/60 shadow-[0_20px_48px_-28px_rgba(41,39,37,0.3)] sm:h-[330px] lg:h-auto lg:min-h-[350px]"
           >
             <iframe
               src={mapEmbedSrc}
@@ -62,7 +62,7 @@ export function Contact() {
 
 function ContactRow({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="flex flex-col gap-1 border-b border-ink/8 py-4 last:border-b-0 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+    <div className="flex flex-col gap-1 border-b border-ink/8 py-4 last:border-b-0 sm:py-3.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
       <span className="text-sm font-medium text-ink-soft">{label}</span>
       <div className="text-base font-semibold text-ink sm:text-right">{children}</div>
     </div>

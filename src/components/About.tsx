@@ -7,13 +7,13 @@ import { SectionHeading } from "./ui/SectionHeading";
 
 export function About() {
   return (
-    <section id="about" className="relative py-10 sm:py-14 lg:py-16">
+    <section id="about" className="relative py-10 sm:py-12 lg:py-13">
       <Flower className="right-4 top-8 h-8 w-8 text-pink opacity-30 sm:right-10" rotate={-10} />
       <Leaf className="bottom-6 right-[42%] h-7 w-7 text-lavender opacity-30" rotate={15} mobile={false} />
       <Dots className="left-3 top-4 h-3 w-9 text-yellow opacity-35" mobile={false} />
 
       <Container>
-        <div className="grid items-center gap-8 md:grid-cols-[1fr_1.1fr] lg:gap-14">
+        <div className="grid items-center gap-8 md:grid-cols-[1fr_1.1fr] lg:gap-12">
           <Reveal>
             <PhotoFrame
               src={aboutContent.image}
@@ -33,7 +33,7 @@ export function About() {
                 {aboutContent.tags.map((tag, i) => (
                   <li
                     key={tag.label}
-                    className={`${i % 2 ? "shape-leaf-alt" : "shape-leaf"} inline-flex items-center gap-2.5 bg-surface px-5 py-3 text-[15px] font-semibold text-ink shadow-[0_10px_28px_-20px_rgba(41,39,37,0.3)]`}
+                    className={`${i % 2 ? "shape-leaf-alt" : "shape-leaf"} inline-flex items-center gap-2.5 bg-surface px-5 py-3 text-[15px] font-semibold sm:px-[18px] sm:py-2.5 sm:text-[14px] text-ink shadow-[0_10px_28px_-20px_rgba(41,39,37,0.3)]`}
                   >
                     <span className={`h-2.5 w-2.5 rounded-full ${tag.accent}`} />
                     {tag.label}

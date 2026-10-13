@@ -38,7 +38,7 @@ export function Gallery() {
   }, [activeIndex]);
 
   return (
-    <section id="gallery" className="relative py-10 sm:py-14 lg:py-16">
+    <section id="gallery" className="relative py-10 sm:py-12 lg:py-13">
       <Cloud className="right-4 top-8 h-7 w-12 text-peach opacity-35 sm:right-12" rotate={-6} />
       <Sparkle className="left-2 top-[45%] h-6 w-6 text-orange opacity-25" rotate={10} mobile={false} />
       <Flower className="bottom-4 right-[30%] h-6 w-6 text-lavender opacity-30" rotate={15} mobile={false} />
@@ -46,7 +46,7 @@ export function Gallery() {
       <Container>
         <SectionHeading title="Балабақша өмірінен" />
 
-        <div className="mt-7 grid grid-flow-dense auto-rows-[calc(50vw-28px)] grid-cols-2 sm:auto-rows-[200px] lg:auto-rows-[260px] gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
+        <div className="mt-7 sm:mt-6 grid grid-flow-dense auto-rows-[calc(50vw-28px)] grid-cols-2 sm:auto-rows-[175px] lg:auto-rows-[225px] gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {galleryImages.map((image, i) => (
             <Reveal key={image.src} delay={(i % 4) * 70} className={SPAN_CLASS[image.span]}>
               <button

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition-all duration-300 ease-out";
+  "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold sm:px-6 sm:py-3 sm:text-[13px] transition-all duration-300 ease-out";
 
 const variants = {
   primary:

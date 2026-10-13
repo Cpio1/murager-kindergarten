@@ -4,7 +4,7 @@ import { Container } from "./ui/Container";
 
 export function Footer() {
   return (
-    <footer className="relative bg-ink py-8 text-cream sm:py-10">
+    <footer className="relative bg-ink py-8 text-cream">
       <Container className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="font-heading text-lg font-semibold text-cream">{siteConfig.fullName}</p>

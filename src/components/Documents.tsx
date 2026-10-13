@@ -5,27 +5,27 @@ import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
 
 const buttonClass =
-  "inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-yellow px-6 py-2.5 text-sm font-semibold text-ink transition-all";
+  "inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-yellow px-6 py-2.5 text-sm font-semibold sm:px-5 sm:py-2 sm:text-[13px] text-ink transition-all";
 
 export function Documents() {
   return (
-    <section id="documents" className="relative bg-section py-10 sm:py-14 lg:py-16">
+    <section id="documents" className="relative bg-section py-10 sm:py-12 lg:py-13">
       <Star className="right-6 top-8 h-5 w-5 text-orange opacity-25 sm:right-[18%]" rotate={-12} />
       <Leaf className="bottom-6 right-10 h-7 w-7 text-yellow opacity-35" rotate={8} mobile={false} />
 
       <Container>
         <SectionHeading title="Құжаттар" />
 
-        <div className="mt-7 grid gap-4 sm:max-w-xl">
+        <div className="mt-7 grid gap-4 sm:mt-6 sm:max-w-lg">
           {documents.map((doc) => (
             <Reveal
               key={doc.title}
-              className="shape-leaf flex flex-wrap items-center gap-4 bg-surface px-5 py-5 shadow-[0_16px_40px_-26px_rgba(41,39,37,0.3)] sm:px-7"
+              className="shape-leaf flex flex-wrap items-center gap-4 bg-surface px-5 py-5 shadow-[0_16px_40px_-26px_rgba(41,39,37,0.3)] sm:px-6 sm:py-4"
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px_22px_16px_22px] bg-yellow-light text-ink">
+              <span className="flex h-12 w-12 shrink-0 sm:h-11 sm:w-11 items-center justify-center rounded-[16px_22px_16px_22px] bg-yellow-light text-ink">
                 <DocumentIcon />
               </span>
-              <h3 className="flex-1 font-heading text-lg font-semibold text-ink">{doc.title}</h3>
+              <h3 className="flex-1 font-heading text-lg font-semibold sm:text-[17px] text-ink">{doc.title}</h3>
               {doc.href ? (
                 <a
                   href={doc.href}

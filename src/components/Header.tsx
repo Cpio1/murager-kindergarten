@@ -29,20 +29,20 @@ export function Header() {
           scrolled ? "bg-cream/95 shadow-[0_6px_24px_-16px_rgba(41,39,37,0.35)]" : "bg-cream/70"
         } backdrop-blur-md`}
       >
-        <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
+        <div className="mx-auto flex w-full max-w-[1180px] items-center justify-between px-5 py-3 sm:px-8 sm:py-2.5 lg:px-10">
           <Link href="#hero" className="flex flex-col leading-none">
-            <span className="font-heading text-[1.6rem] font-bold tracking-tight text-ink sm:text-[1.85rem]">
+            <span className="font-heading text-[1.6rem] font-bold tracking-tight text-ink sm:text-[1.7rem]">
               «{siteConfig.name}»
             </span>
             <span className="mt-0.5 text-xs font-medium text-ink-soft">{siteConfig.tagline}</span>
           </Link>
 
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {navigation.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-[15px] font-medium text-ink/75 transition-colors hover:text-ink"
+                className="text-[14px] font-medium text-ink/75 transition-colors hover:text-ink"
               >
                 {item.label}
               </a>
@@ -51,7 +51,7 @@ export function Header() {
 
           <a
             href="#contact"
-            className="hidden rounded-full bg-yellow px-6 py-2.5 text-sm font-semibold text-ink transition-all hover:-translate-y-0.5 hover:bg-yellow/90 lg:inline-flex"
+            className="hidden rounded-full bg-yellow px-5 py-2 text-[13px] font-semibold text-ink transition-all hover:-translate-y-0.5 hover:bg-yellow/90 lg:inline-flex"
           >
             Байланысу
           </a>
