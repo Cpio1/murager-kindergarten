@@ -1,20 +1,24 @@
 import { aboutContent } from "@/data/about";
 import { Container } from "./ui/Container";
-import { Flower, Leaf, Dots } from "./ui/Decor";
+import { Balloon, Blob, Dots, Flower, Leaf, Ring } from "./ui/Decor";
 import { PhotoFrame } from "./ui/PhotoFrame";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
 
 export function About() {
   return (
-    <section id="about" className="relative py-10 sm:py-12 lg:py-13">
+    <section id="about" className="relative isolate overflow-x-clip py-10 sm:py-12 lg:py-13">
       <Flower className="right-4 top-8 h-8 w-8 text-pink opacity-30 sm:right-10" rotate={-10} />
       <Leaf className="bottom-6 right-[42%] h-7 w-7 text-lavender opacity-30" rotate={15} mobile={false} />
       <Dots className="left-3 top-4 h-3 w-9 text-yellow opacity-35" mobile={false} />
+      <Balloon className="bottom-10 right-[3%] h-12 w-7 text-peach opacity-35" rotate={8} show="lg" />
+      <Ring className="left-[46%] top-6 h-4 w-4 text-orange opacity-25" show="lg" />
 
       <Container>
         <div className="grid items-center gap-8 md:grid-cols-[1fr_1.1fr] lg:gap-12">
-          <Reveal>
+          <Reveal className="relative">
+            <Blob className="-left-10 -top-8 h-44 w-44 text-lavender opacity-[0.14] sm:h-60 sm:w-60" />
+            <Blob variant={1} className="-bottom-10 -right-8 hidden h-40 w-40 text-yellow-light opacity-60 md:block" />
             <PhotoFrame
               src={aboutContent.image}
               alt="Мұрагер балабақшасындағы балалар"

@@ -23,6 +23,35 @@
   --animate-drift: drift 8s ease-in-out infinite;
   --animate-drift-slow: drift 12s ease-in-out infinite;
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-sway: sway 11s ease-in-out infinite;
+  --animate-spin-slow: turn 60s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(6px, -6px);
+    }
+  }
+
+  @keyframes turn {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-6deg);
+    }
+    50% {
+      transform: rotate(6deg);
+    }
+  }
 
   @keyframes drift {
     0%,
@@ -66,7 +95,11 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.4s ease-out,
+    box-shadow 0.4s ease-out;
 }
 
 .reveal.is-visible {
@@ -142,5 +175,8 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  [class*="animate-"] {
+    animation: none !important;
   }
 }

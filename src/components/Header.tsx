@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navigation, siteConfig } from "@/data/site";
+import { Logo } from "./ui/Logo";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -30,11 +31,14 @@ export function Header() {
         } backdrop-blur-md`}
       >
         <div className="mx-auto flex w-full max-w-[1180px] items-center justify-between px-5 py-3 sm:px-8 sm:py-2.5 lg:px-10">
-          <Link href="#hero" className="flex flex-col leading-none">
-            <span className="font-heading text-[1.6rem] font-bold tracking-tight text-ink sm:text-[1.7rem]">
-              «{siteConfig.name}»
+          <Link href="#hero" className="group flex items-center gap-2.5 sm:gap-3">
+            <Logo className="h-9 w-9 shrink-0 transition-transform duration-500 ease-out group-hover:rotate-[-8deg] sm:h-11 sm:w-11" />
+            <span className="flex flex-col leading-none">
+              <span className="font-heading text-[1.6rem] font-bold tracking-tight text-ink sm:text-[1.7rem]">
+                «{siteConfig.name}»
+              </span>
+              <span className="mt-0.5 text-xs font-medium text-ink-soft">{siteConfig.tagline}</span>
             </span>
-            <span className="mt-0.5 text-xs font-medium text-ink-soft">{siteConfig.tagline}</span>
           </Link>
 
           <nav className="hidden items-center gap-6 lg:flex">

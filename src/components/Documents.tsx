@@ -1,6 +1,6 @@
 import { documents } from "@/data/documents";
 import { Container } from "./ui/Container";
-import { Leaf, Star } from "./ui/Decor";
+import { Book, Leaf, Star } from "./ui/Decor";
 import { Reveal } from "./ui/Reveal";
 import { SectionHeading } from "./ui/SectionHeading";
 
@@ -9,9 +9,10 @@ const buttonClass =
 
 export function Documents() {
   return (
-    <section id="documents" className="relative bg-section py-10 sm:py-12 lg:py-13">
+    <section id="documents" className="relative isolate overflow-x-clip bg-section py-10 sm:py-12 lg:py-13">
       <Star className="right-6 top-8 h-5 w-5 text-orange opacity-25 sm:right-[18%]" rotate={-12} />
       <Leaf className="bottom-6 right-10 h-7 w-7 text-yellow opacity-35" rotate={8} mobile={false} />
+      <Book className="right-[30%] top-[45%] h-6 w-8 text-lavender opacity-30" rotate={-8} show="lg" />
 
       <Container>
         <SectionHeading title="Құжаттар" />
@@ -20,10 +21,11 @@ export function Documents() {
           {documents.map((doc) => (
             <Reveal
               key={doc.title}
-              className="shape-leaf flex flex-wrap items-center gap-4 bg-surface px-5 py-5 shadow-[0_16px_40px_-26px_rgba(41,39,37,0.3)] sm:px-6 sm:py-4"
+              className="shape-leaf flex flex-wrap items-center gap-4 bg-surface px-5 py-5 shadow-[0_16px_40px_-26px_rgba(41,39,37,0.3)] hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-26px_rgba(41,39,37,0.38)] sm:px-6 sm:py-4"
             >
-              <span className="flex h-12 w-12 shrink-0 sm:h-11 sm:w-11 items-center justify-center rounded-[16px_22px_16px_22px] bg-yellow-light text-ink">
+              <span className="relative flex h-12 w-12 shrink-0 sm:h-11 sm:w-11 items-center justify-center rounded-[16px_22px_16px_22px] bg-yellow-light text-ink">
                 <DocumentIcon />
+                <MiniPencil />
               </span>
               <h3 className="flex-1 font-heading text-lg font-semibold sm:text-[17px] text-ink">{doc.title}</h3>
               {doc.href ? (
@@ -59,6 +61,20 @@ function DocumentIcon() {
       />
       <path d="M14 3.5V8H18.5" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
       <path d="M9 13H15M9 16.5H15" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function MiniPencil() {
+  return (
+    <svg
+      viewBox="0 0 40 16"
+      aria-hidden="true"
+      className="absolute -right-2.5 -top-1.5 h-[9px] w-[22px] -rotate-45 opacity-80"
+    >
+      <path d="M8 3H29L37 8L29 13H8V3Z" fill="var(--color-orange)" />
+      <path d="M3 3H8V13H3C2.4 13 2 12.6 2 12V4C2 3.4 2.4 3 3 3Z" fill="var(--color-pink)" />
+      <path d="M33.5 6L37 8L33.5 10V6Z" fill="var(--color-ink)" />
     </svg>
   );
 }
