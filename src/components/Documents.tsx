@@ -21,7 +21,7 @@ export function Documents() {
           {documents.map((doc) => (
             <Reveal
               key={doc.title}
-              className="shape-leaf flex flex-wrap items-center gap-4 bg-surface px-5 py-5 shadow-[0_16px_40px_-26px_rgba(41,39,37,0.3)] hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-26px_rgba(41,39,37,0.38)] sm:px-6 sm:py-4"
+              className={`shape-leaf relative flex flex-wrap items-center gap-4 bg-surface px-5 py-5 shadow-[0_16px_40px_-26px_rgba(41,39,37,0.3)] hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-26px_rgba(41,39,37,0.38)] sm:px-6 sm:py-4 ${doc.href ? "cursor-pointer focus-within:-translate-y-0.5" : ""}`}
             >
               <span className="relative flex h-12 w-12 shrink-0 sm:h-11 sm:w-11 items-center justify-center rounded-[16px_22px_16px_22px] bg-yellow-light text-ink">
                 <DocumentIcon />
@@ -33,13 +33,13 @@ export function Documents() {
                   href={doc.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${buttonClass} hover:-translate-y-0.5 hover:bg-yellow/90`}
+                  className={`${buttonClass} hover:bg-yellow/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink after:absolute after:inset-0 after:content-['']`}
                 >
-                  Қарау <span aria-hidden="true">→</span>
+                  Құжаттарды қарау <span aria-hidden="true">→</span>
                 </a>
               ) : (
                 <span aria-disabled="true" className={`${buttonClass} cursor-default opacity-60`}>
-                  Қарау <span aria-hidden="true">→</span>
+                  Құжаттарды қарау <span aria-hidden="true">→</span>
                 </span>
               )}
             </Reveal>
