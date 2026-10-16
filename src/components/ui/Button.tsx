@@ -12,6 +12,10 @@ const variants = {
   outline: "border-2 border-ink/12 text-ink hover:border-ink/25 hover:-translate-y-0.5",
 };
 
+export function buttonClass(variant: keyof typeof variants = "primary") {
+  return `${base} ${variants[variant]}`;
+}
+
 export function Button({
   href,
   children,

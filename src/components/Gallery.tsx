@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { galleryImages } from "@/data/gallery";
+import { buttonClass } from "./ui/Button";
 import { Container } from "./ui/Container";
 import { Cloud, Flower, Pencil, Sparkle, Star, Triangle } from "./ui/Decor";
 import { PhotoFrame } from "./ui/PhotoFrame";
@@ -18,8 +19,62 @@ const SPAN_CLASS: Record<string, string> = {
 // 3 repeating tile shapes; the large photo uses shape-organic
 const GALLERY_SHAPES = ["shape-leaf", "shape-wave", "shape-leaf-alt"];
 
+// Жиналған күйде көрсетілетін фото саны; mobile/tablet-те 5-ші фото жасырылады
+const COLLAPSED_COUNT = 5;
+const COLLAPSED_COUNT_MOBILE = 4;
+const TOGGLE_MS = 500;
+
 export function Gallery() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const [height, setHeight] = useState<number | "auto">("auto");
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const expandingRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  const hasMore = galleryImages.length > COLLAPSED_COUNT;
+  const visibleImages = showAll ? galleryImages : galleryImages.slice(0, COLLAPSED_COUNT);
+
+  // Ашылғанда: жаңа фотолар қосылғаннан кейін биіктікті толық мөлшерге дейін анимациялау
+  useLayoutEffect(() => {
+    if (!expandingRef.current || !gridRef.current) return;
+    expandingRef.current = false;
+    const target = gridRef.current.scrollHeight;
+    requestAnimationFrame(() => setHeight(target));
+    timerRef.current = setTimeout(() => setHeight("auto"), TOGGLE_MS + 50);
+  }, [showAll]);
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
+
+  const toggle = () => {
+    const wrapper = wrapperRef.current;
+    const grid = gridRef.current;
+    if (!wrapper || !grid) return;
+    clearTimeout(timerRef.current);
+    const current = wrapper.offsetHeight;
+
+    if (!showAll) {
+      setHeight(current);
+      expandingRef.current = true;
+      setShowAll(true);
+      return;
+    }
+
+    // Жабылғанда: алдымен көрінетін фотолардың астына дейін жиырып, содан кейін қалғандарын алып тастау
+    const tiles = Array.from(grid.children) as HTMLElement[];
+    const collapsedCount = window.matchMedia("(min-width: 1024px)").matches ? COLLAPSED_COUNT : COLLAPSED_COUNT_MOBILE;
+    const target = Math.max(...tiles.slice(0, collapsedCount).map((el) => el.offsetTop + el.offsetHeight));
+    setHeight(current);
+    requestAnimationFrame(() => {
+      setHeight(target);
+      document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    timerRef.current = setTimeout(() => {
+      setShowAll(false);
+      setHeight("auto");
+    }, TOGGLE_MS);
+  };
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -53,25 +108,43 @@ export function Gallery() {
           <Star className="bottom-6 right-[9%] h-4 w-4 text-yellow opacity-50" rotate={10} show="sm" />
         </div>
 
-        <div className="mt-7 sm:mt-6 grid grid-flow-dense auto-rows-[calc(50vw-28px)] grid-cols-2 sm:auto-rows-[175px] lg:auto-rows-[225px] gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {galleryImages.map((image, i) => (
-            <Reveal key={image.src} delay={(i % 4) * 70} className={SPAN_CLASS[image.span]}>
-              <button
-                type="button"
-                onClick={() => setActiveIndex(i)}
-                className={`group block h-full w-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-orange ${image.span === "large" ? "shape-organic" : GALLERY_SHAPES[i % GALLERY_SHAPES.length]}`}
+        <div
+          ref={wrapperRef}
+          className={`mt-7 sm:mt-6 transition-[height] ease-in-out motion-reduce:transition-none ${height === "auto" ? "" : "overflow-hidden"}`}
+          style={{ height, transitionDuration: `${TOGGLE_MS}ms` }}
+        >
+          <div ref={gridRef} className="relative grid grid-flow-dense auto-rows-[calc(50vw-28px)] grid-cols-2 sm:auto-rows-[175px] lg:auto-rows-[225px] gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {visibleImages.map((image, i) => (
+              <Reveal
+                key={image.src}
+                delay={(i % 4) * 70}
+                className={`${SPAN_CLASS[image.span]} ${!showAll && i >= COLLAPSED_COUNT_MOBILE ? "max-lg:hidden" : ""}`}
               >
-                <PhotoFrame
-                  src={image.src}
-                  alt={image.alt}
-                  accent={(["yellow", "peach", "orange", "lavender"] as const)[i % 4]}
-                  sizes={image.span === "large" || image.span === "wide" ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"}
-                  className="h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-                />
-              </button>
-            </Reveal>
-          ))}
+                <button
+                  type="button"
+                  onClick={() => setActiveIndex(i)}
+                  className={`group block h-full w-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-orange ${image.span === "large" ? "shape-organic" : GALLERY_SHAPES[i % GALLERY_SHAPES.length]}`}
+                >
+                  <PhotoFrame
+                    src={image.src}
+                    alt={image.alt}
+                    accent={(["yellow", "peach", "orange", "lavender"] as const)[i % 4]}
+                    sizes={image.span === "large" || image.span === "wide" ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"}
+                    className="h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                  />
+                </button>
+              </Reveal>
+            ))}
+          </div>
         </div>
+
+        {hasMore && (
+          <div className="mt-8 flex justify-center">
+            <button type="button" onClick={toggle} aria-expanded={showAll} className={buttonClass("outline")}>
+              {showAll ? "Жасыру" : "Тағы көрсету"}
+            </button>
+          </div>
+        )}
       </Container>
 
       {activeIndex !== null && (

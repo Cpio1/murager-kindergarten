@@ -32,7 +32,11 @@ export function About() {
           <div>
             <SectionHeading title={aboutContent.title} />
             <Reveal delay={80}>
-              <p className="mt-4 max-w-lg text-base leading-relaxed text-ink-soft sm:text-lg">{aboutContent.text}</p>
+              <div className="mt-4 max-w-lg space-y-3 text-base leading-relaxed text-ink-soft sm:text-lg">
+                {aboutContent.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
               <ul className="mt-6 flex flex-wrap gap-3">
                 {aboutContent.tags.map((tag, i) => (
                   <li
